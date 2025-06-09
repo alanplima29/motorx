@@ -46,7 +46,6 @@ O projeto foca na usabilidade e organização das peças em estoque com uma inte
 
 ## ✅  Checklist | Indicadores de Desempenho (ID) dos Resultados de Aprendizagem (RA)
 
-## ✅ Checklist de Funcionalidades
 
 ### RA1 - Prototipar interfaces com foco em usabilidade
 - [x] **ID1:** Desenvolver protótipos com base em diretrizes de usabilidade  
