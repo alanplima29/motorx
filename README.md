@@ -1,4 +1,4 @@
-# 🚗 MotorX - Gerenciador de Peças Automotivas
+# 🚗 MotorX - Gerenciador de Pedidos de Peças Automotivas
 
 ### 📌 Autor  
 **Alan Pereira Lima**
