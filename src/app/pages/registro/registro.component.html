@@ -1,0 +1,83 @@
+<div class="flex min-h-screen items-center justify-center bg-gray-50 px-6">
+  <div class="w-full max-w-md bg-white rounded shadow-md p-6">
+    <h2 class="text-2xl font-semibold text-center mb-6">Criar Conta</h2>
+
+    <form [formGroup]="form" (ngSubmit)="submit()" class="space-y-4">
+
+      <!-- Nome -->
+      <div>
+        <input
+          type="text"
+          formControlName="nome"
+          placeholder="Nome"
+          class="w-full px-4 py-2 border rounded outline-none text-sm"
+          [ngClass]="{ 'border-red-500': form.get('nome')?.touched && form.get('nome')?.invalid }"
+        />
+        <div *ngIf="form.get('nome')?.touched && form.get('nome')?.invalid" class="text-xs text-red-500 mt-1">
+          Campo obrigatório
+        </div>
+      </div>
+
+      <!-- Email -->
+      <div>
+        <input
+          type="email"
+          formControlName="email"
+          placeholder="Email"
+          class="w-full px-4 py-2 border rounded outline-none text-sm"
+          [ngClass]="{ 'border-red-500': form.get('email')?.touched && form.get('email')?.invalid }"
+        />
+        <div *ngIf="form.get('email')?.touched && form.get('email')?.errors" class="text-xs text-red-500 mt-1">
+          <ng-container *ngIf="form.get('email')?.errors?.['required']">Campo obrigatório</ng-container>
+          <ng-container *ngIf="form.get('email')?.errors?.['email']">E-mail inválido</ng-container>
+        </div>
+      </div>
+
+      <!-- Senha -->
+      <div>
+        <input
+          type="password"
+          formControlName="senha"
+          placeholder="Senha"
+          class="w-full px-4 py-2 border rounded outline-none text-sm"
+          [ngClass]="{ 'border-red-500': form.get('senha')?.touched && form.get('senha')?.invalid }"
+        />
+        <div *ngIf="form.get('senha')?.touched && form.get('senha')?.errors" class="text-xs text-red-500 mt-1">
+          <ng-container *ngIf="form.get('senha')?.errors?.['required']">Campo obrigatório</ng-container>
+          <ng-container *ngIf="form.get('senha')?.errors?.['minlength']">Mínimo de 6 caracteres</ng-container>
+        </div>
+      </div>
+
+      <!-- Confirmar Senha -->
+      <div>
+        <input
+          type="password"
+          formControlName="confirmarSenha"
+          placeholder="Confirmar Senha"
+          class="w-full px-4 py-2 border rounded outline-none text-sm"
+          [ngClass]="{
+            'border-red-500': (form.get('confirmarSenha')?.touched && form.get('confirmarSenha')?.invalid)
+              || (form.touched && form.errors?.['senhasDiferentes'])
+          }"
+        />
+        <div *ngIf="form.get('confirmarSenha')?.touched && form.get('confirmarSenha')?.invalid" class="text-xs text-red-500 mt-1">
+          Campo obrigatório
+        </div>
+        <div *ngIf="form.touched && form.errors?.['senhasDiferentes']" class="text-xs text-red-500 mt-1">
+          As senhas não coincidem
+        </div>
+      </div>
+
+      <!-- Botão -->
+      <button type="submit"
+        class="bg-green-600 hover:bg-green-700 transition text-white w-full py-2 rounded font-medium">
+        Cadastrar
+      </button>
+    </form>
+
+    <!-- Voltar para Login -->
+    <div class="mt-4 text-center text-sm">
+      <a routerLink="/" class="text-gray-600 hover:underline">Já possui uma conta? Efetuar Login</a>
+    </div>
+  </div>
+</div>

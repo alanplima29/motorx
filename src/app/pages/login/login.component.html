@@ -1,0 +1,137 @@
+<nav class="w-full px-6 py-4 flex justify-between items-center bg-white shadow-md">
+  <div class="flex items-center gap-2">
+    <img src="/images/login/perfil.png" alt="Logo" class="w-25 h-10" />
+    <span class="text-xl font-semibold" style="font-family: 'Open Sans', sans-serif;">MotorX</span>
+  </div>
+  <ul class="hidden md:flex gap-6 text-gray-700 font-medium">
+    <li class="hover:text-green-600 transition"><a href="#">Início</a></li>
+    <li class="hover:text-green-600 transition"><a href="#">Consultar Pedidos</a></li>
+    
+  <li class="hover:text-green-600 transition">
+  <a routerLink="/pecas" routerLinkActive="text-green-600" class="cursor-pointer">Novo Pedido</a>
+  </li>
+
+  <li class="hover:text-green-600 transition">
+  <a routerLink="/pedido/detalhes" routerLinkActive="text-green-600" class="cursor-pointer">Rastrear Pedido</a>
+</li>
+
+
+  </ul>
+ <button class="md:hidden" (click)="toggleMenu()">
+
+  <div *ngIf="isMenuOpen" class="absolute top-16 right-4 bg-white shadow-md rounded-md p-4 z-50 w-56 md:hidden">
+  <ul class="flex flex-col gap-3 text-gray-700 font-medium text-left">
+    <li class="hover:text-green-600 transition"><a href="#">Início</a></li>
+    <li class="hover:text-green-600 transition"><a href="#">Consultar Pedidos</a></li>
+    <li class="hover:text-green-600 transition">
+  <a routerLink="/pecas" routerLinkActive="text-green-600" class="cursor-pointer">Novo Pedido</a>
+</li>
+
+    <li class="hover:text-green-600 transition">
+  <a routerLink="/pedido/detalhes" routerLinkActive="text-green-600" class="cursor-pointer">Rastrear Pedido</a>
+</li>
+
+  </ul>
+</div>
+
+
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-700" fill="none" viewBox="0 0 24 24"
+      stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+        d="M4 6h16M4 12h16M4 18h16" />
+    </svg>
+  </button>
+</nav>
+
+
+<div class="flex min-h-screen  items-center">
+  <!-- Esquerda: Formulário -->
+ <div class="w-full lg:w-1/2 flex flex-col items-center justify-center px-6 py-12 sm:py-16">
+
+    <img src="/images/login/avatar.png" alt="MotorX Logo" class="w-45 mb-5" />
+    <div class="text-4xl mb-4" style="font-family: 'Open Sans', sans-serif;">
+      Bem Vindo
+    </div>
+<form [formGroup]="form" (ngSubmit)="submit()" class="w-full flex flex-col items-center">
+  <!-- Campo Login -->
+  <div class="w-full max-w-sm flex items-center rounded p-2 mb-1 gap-2 bg-white border transition-all duration-200"
+    [ngClass]="{
+      'border-red-500': form.get('login')?.touched && form.get('login')?.invalid,
+      'border-gray-300': !form.get('login')?.invalid
+    }">
+    <img src="/images/login/user.svg" class="w-5 h-5 opacity-70" />
+    <input type="text" placeholder="Login" formControlName="login" class="flex-1 outline-none text-sm" />
+  </div>
+  <span *ngIf="form.get('login')?.touched && form.get('login')?.errors"
+    class="text-red-500 text-xs mb-2 w-full max-w-sm">
+    <ng-container *ngIf="form.get('login')?.errors?.['required']">Campo obrigatório</ng-container>
+    <ng-container *ngIf="form.get('login')?.errors?.['email']">E-mail inválido</ng-container>
+  </span>
+
+  <!-- Campo Senha -->
+  <div class="w-full max-w-sm flex items-center rounded p-2 mb-1 gap-2 bg-white border transition-all duration-200"
+    [ngClass]="{
+      'border-red-500': form.get('senha')?.touched && form.get('senha')?.invalid,
+      'border-gray-300': !form.get('senha')?.invalid
+    }">
+    <img src="/images/login/senha.svg" class="w-5 h-5 opacity-70" />
+    <input type="password" placeholder="Senha" formControlName="senha" class="flex-1 outline-none text-sm" />
+  </div>
+  <span *ngIf="form.get('senha')?.touched && form.get('senha')?.errors"
+    class="text-red-500 text-xs mb-2 w-full max-w-sm">
+    <ng-container *ngIf="form.get('senha')?.errors?.['required']">Campo obrigatório</ng-container>
+    <ng-container *ngIf="form.get('senha')?.errors?.['minlength']">A senha deve ter no mínimo 6 caracteres</ng-container>
+  </span>
+
+  <!-- Esqueci minha senha -->
+  <div class="w-full max-w-sm text-right mb-4">
+    <a href="/esqueci-senha" class="text-sm text-gray-600 hover:underline">Esqueci minha senha</a>
+  </div>
+
+  <!-- Botão Avançar -->
+  <button type="submit"
+    class="bg-green-600 text-white px-6 py-2 rounded w-full max-w-sm hover:bg-green-700 transition">
+    Avançar
+  </button>
+</form>
+
+<!-- Botão de Cadastrar -->
+<a routerLink="/registro" class="mt-4 w-full max-w-sm">
+  <button class="border border-gray-400 text-gray-700 px-6 py-2 rounded w-full hover:bg-gray-100 transition">
+    Cadastrar
+  </button>
+</a>
+
+<!-- OU -->
+<div class="flex items-center gap-4 my-4 w-full max-w-sm text-sm text-gray-500">
+  <hr class="flex-grow border-t border-gray-300" />
+  ou
+  <hr class="flex-grow border-t border-gray-300" />
+</div>
+
+<!-- Login com Google -->
+<button
+  class="flex items-center justify-center gap-2 border border-gray-300 text-sm rounded px-4 py-2 w-full max-w-sm hover:bg-gray-100 transition">
+  <img src="https://www.svgrepo.com/show/475656/google-color.svg" class="w-5 h-5" />
+  <span class="text-sm">Login com <strong>google</strong></span>
+</button>
+
+
+
+</div>
+
+
+  
+
+    
+
+  <!-- Direita: Ilustração com curva realista -->
+  <!-- Direita: Arte com fundo curvo -->
+  <div class="hidden lg:flex w-1/2 items-center justify-center relative overflow-hidden"
+  style="background-image: url('/images/login/curve-bg.svg'); background-size: cover; background-position: center;">
+
+
+
+    <img src="/images/login/prancheta.png" alt="Ilustração" class="z-10 max-w-[80%] max-h-[80%] object-contain max-w-[640px]" />
+
+  </div>

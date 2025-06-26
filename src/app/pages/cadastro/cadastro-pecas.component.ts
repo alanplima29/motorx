@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-cadastro-pecas',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule, RouterModule],
   templateUrl: './cadastro-pecas.component.html',
   styleUrls: ['./cadastro-pecas.component.css']
 })
@@ -14,6 +15,7 @@ export class CadastroPecasComponent {
   mensagemEnvio = '';
   pecaASerExcluida: number | null = null;
   pecaEmEdicao: any = null;
+  menuAberto = false;
 
   pecas = [
     { id: 1, nome: 'Filtro de Óleo', categoria: 'Motor', quantidade: 12 },
