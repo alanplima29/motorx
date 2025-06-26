@@ -18,7 +18,9 @@
       <li class="hover:text-green-600 transition">
         <a routerLink="/pedido/detalhes" class="cursor-pointer">Rastrear Pedido</a>
       </li>
+       <li><button (click)="logout()" class="text-sm text-red-600 hover:underline">Sair</button></li>
     </ul>
+   
 
     <!-- Botão hamburguer mobile -->
     <button class="md:hidden" (click)="menuAberto = !menuAberto">
@@ -27,23 +29,18 @@
       </svg>
     </button>
 
-    <!-- Menu mobile dropdown -->
-    <div *ngIf="menuAberto" class="absolute top-16 right-6 bg-white shadow-lg rounded-lg p-4 w-52 z-50 md:hidden">
-      <ul class="flex flex-col gap-3 text-gray-700 font-medium">
-        <li>
-          <a routerLink="/" class="hover:text-green-600 cursor-pointer">Início</a>
-        </li>
-        <li>
-          <a routerLink="/consultar" class="hover:text-green-600 cursor-pointer">Consultar Pedidos</a>
-        </li>
-        <li>
-          <a routerLink="/pecas"  class="hover:text-green-600 cursor-pointer">Novo Pedido</a>
-        </li>
-        <li>
-          <a routerLink="/pedido/detalhes" class="hover:text-green-600 cursor-pointer">Rastrear Pedido</a>
-        </li>
-      </ul>
-    </div>
+   <!-- Menu mobile dropdown -->
+<div *ngIf="menuAberto" class="absolute top-16 right-6 bg-white shadow-lg rounded-lg p-4 w-52 z-50 md:hidden">
+  <ul class="flex flex-col gap-3 text-gray-700 font-medium">
+    <li><a routerLink="/" class="hover:text-green-600 cursor-pointer">Início</a></li>
+    <li><a routerLink="/consultar" class="hover:text-green-600 cursor-pointer">Consultar Pedidos</a></li>
+    <li><a routerLink="/pecas" class="hover:text-green-600 cursor-pointer">Novo Pedido</a></li>
+    <li><a routerLink="/pedido/detalhes" class="hover:text-green-600 cursor-pointer">Rastrear Pedido</a></li>
+    <li><button (click)="logout()" class="text-sm text-red-600 hover:underline">Sair</button></li>
+  </ul>
+</div>
+
+    
   </nav>
 
 

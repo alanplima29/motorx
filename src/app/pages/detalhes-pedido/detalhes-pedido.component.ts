@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
+import { RouterModule, Router } from '@angular/router';
 
 @Component({
   standalone: true,
@@ -10,6 +10,8 @@ import { RouterModule } from '@angular/router';
 })
 export class DetalhesPedidoComponent {
   isMenuOpen = false;
+
+  constructor(private router: Router) {} // ← CORREÇÃO AQUI
 
   toggleMenu() {
     this.isMenuOpen = !this.isMenuOpen;
@@ -52,4 +54,9 @@ export class DetalhesPedidoComponent {
       completa: false
     }
   ];
+
+  logout() {
+    localStorage.removeItem('usuarioLogado');
+    this.router.navigate(['/login']);
+  }
 }

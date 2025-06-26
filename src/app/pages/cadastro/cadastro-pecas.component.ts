@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
-import { RouterModule } from '@angular/router';
+import { RouterModule, Router } from '@angular/router'; // ← IMPORTADO Router
 
 @Component({
   selector: 'app-cadastro-pecas',
@@ -25,7 +25,7 @@ export class CadastroPecasComponent {
 
   form: FormGroup;
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private router: Router) { // ← INJEÇÃO DO Router
     this.form = this.fb.group({
       nome: ['', Validators.required],
       categoria: ['', Validators.required],
@@ -91,5 +91,11 @@ export class CadastroPecasComponent {
   enviarParaSeparacao() {
     this.mensagemEnvio = 'Pedido enviado para separação!';
     setTimeout(() => this.mensagemEnvio = '', 3000);
+  }
+
+  // ✅ Método logout para requisito 17
+  logout() {
+    localStorage.removeItem('usuarioLogado');
+    this.router.navigate(['/login']);
   }
 }
