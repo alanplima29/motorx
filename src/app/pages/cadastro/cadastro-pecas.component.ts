@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule, Router } from '@angular/router';
+import { PecaService } from '../../services/peca.service';
+import { take } from 'rxjs';
+
 
 @Component({
   selector: 'app-cadastro-pecas',
@@ -21,7 +24,7 @@ export class CadastroPecasComponent implements OnInit {
 
   form: FormGroup;
 
-  constructor(private fb: FormBuilder, private router: Router) {
+  constructor(private fb: FormBuilder, private router: Router, private pecaService: PecaService) {
     this.form = this.fb.group({
       nome: ['', Validators.required],
       categoria: ['', Validators.required],
@@ -34,15 +37,13 @@ export class CadastroPecasComponent implements OnInit {
   }
 
   // Método que carrega os dados do banco via Promise (GET)
-  async carregarPecas() {
-    try {
-      const resposta = await fetch('http://localhost/listar_pecas.php');
-      const data = await resposta.json();
-      this.pecas = data;
-    } catch (erro) {
-      console.error('Erro ao carregar peças:', erro);
-    }
-  }
+  carregarPecas() {
+  this.pecaService.listar().pipe(take(1)).subscribe({
+    next: (data) => this.pecas = data,
+    error: (err) => console.error('Erro ao carregar peças:', err)
+  });
+}
+
 
   // Método assíncrono que trata cadastro e edição (POST)
   async salvar() {
