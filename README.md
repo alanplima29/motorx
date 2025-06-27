@@ -97,7 +97,7 @@ O projeto foca na usabilidade e organização das peças em estoque com uma inte
 - [ ] **ID20**: Tratar respostas de sucesso e erros das requisições assíncronas  
 - [x] **ID21**: Aplicar validações de entrada nos campos do formulário, utilizando técnicas como expressões regulares (REGEX), e apresentar mensagens de erro claras e informativas para auxiliar os usuários a corrigir entradas incorretas  
 - [x] **ID22**: Desabilitar adequadamente o botão de submit enquanto o formulário conter campos inválidos, evitando a submissão de dados incorretos  
-- [ ] **ID23**: Utilizar Promises para tratar respostas assíncronas  
+- [x] **ID23**: Utilizar Promises para tratar respostas assíncronas  
 - [ ] **ID24**: Utilizar Observables para tratar respostas assíncronas  
 
 ---
