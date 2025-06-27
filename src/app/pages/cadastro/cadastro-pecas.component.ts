@@ -1,7 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
-import { RouterModule, Router } from '@angular/router'; // ← IMPORTADO Router
+import { RouterModule, Router } from '@angular/router';
 
 @Component({
   selector: 'app-cadastro-pecas',
@@ -10,22 +10,18 @@ import { RouterModule, Router } from '@angular/router'; // ← IMPORTADO Router
   templateUrl: './cadastro-pecas.component.html',
   styleUrls: ['./cadastro-pecas.component.css']
 })
-export class CadastroPecasComponent {
+export class CadastroPecasComponent implements OnInit {
   mensagem = '';
   mensagemEnvio = '';
   pecaASerExcluida: number | null = null;
   pecaEmEdicao: any = null;
   menuAberto = false;
 
-  pecas = [
-    { id: 1, nome: 'Filtro de Óleo', categoria: 'Motor', quantidade: 12 },
-    { id: 2, nome: 'Pastilha de Freio', categoria: 'Freios', quantidade: 30 },
-    { id: 3, nome: 'Amortecedor Traseiro', categoria: 'Suspensão', quantidade: 8 }
-  ];
+  pecas: any[] = [];
 
   form: FormGroup;
 
-  constructor(private fb: FormBuilder, private router: Router) { // ← INJEÇÃO DO Router
+  constructor(private fb: FormBuilder, private router: Router) {
     this.form = this.fb.group({
       nome: ['', Validators.required],
       categoria: ['', Validators.required],
@@ -33,7 +29,23 @@ export class CadastroPecasComponent {
     });
   }
 
-  salvar() {
+  ngOnInit(): void {
+    this.carregarPecas();
+  }
+
+  // Método que carrega os dados do banco via Promise (GET)
+  async carregarPecas() {
+    try {
+      const resposta = await fetch('http://localhost/listar_pecas.php');
+      const data = await resposta.json();
+      this.pecas = data;
+    } catch (erro) {
+      console.error('Erro ao carregar peças:', erro);
+    }
+  }
+
+  // Método assíncrono que trata cadastro e edição (POST)
+  async salvar() {
     if (this.form.invalid) {
       this.form.markAllAsTouched();
       return;
@@ -42,27 +54,62 @@ export class CadastroPecasComponent {
     const dados = this.form.value;
 
     if (this.pecaEmEdicao) {
-      const index = this.pecas.findIndex(p => p.id === this.pecaEmEdicao.id);
-      if (index !== -1) {
-        this.pecas[index] = { ...dados, id: this.pecaEmEdicao.id };
+      const dadosAtualizados = { ...dados, id: this.pecaEmEdicao.id };
+
+      try {
+        const resposta = await fetch('http://localhost/atualizar_peca.php', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(dadosAtualizados)
+        });
+
+        const resultado = await resposta.json();
+
+        if (resultado.success) {
+          this.mensagem = resultado.message;
+          this.carregarPecas();
+          this.pecaEmEdicao = null;
+          this.form.reset({ quantidade: 0 });
+        } else {
+          this.mensagem = 'Erro: ' + resultado.message;
+        }
+      } catch (erro) {
+        console.error('Erro ao atualizar:', erro);
+        this.mensagem = 'Erro ao conectar com o servidor.';
       }
-      this.mensagem = 'Peça atualizada com sucesso!';
-      this.pecaEmEdicao = null;
     } else {
-      const novaPeca = { ...dados, id: Date.now() };
-      this.pecas.push(novaPeca);
-      this.mensagem = 'Peça adicionada com sucesso!';
+      try {
+        const resposta = await fetch('http://localhost/salvar_peca.php', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(dados)
+        });
+
+        const resultado = await resposta.json();
+
+        if (resultado.success) {
+          this.mensagem = resultado.message;
+          this.form.reset({ quantidade: 0 });
+          this.carregarPecas();
+        } else {
+          this.mensagem = 'Erro: ' + resultado.message;
+        }
+      } catch (erro) {
+        console.error('Erro de requisição:', erro);
+        this.mensagem = 'Erro ao conectar com o servidor.';
+      }
     }
 
-    this.form.reset({ quantidade: 0 });
     setTimeout(() => this.mensagem = '', 3000);
   }
 
+  // Envia os dados da peça para edição
   editar(peca: any) {
     this.pecaEmEdicao = peca;
     this.form.patchValue(peca);
   }
 
+  // Confirma visualmente antes de excluir
   pedirConfirmacaoExclusao(id: number) {
     this.pecaASerExcluida = id;
     setTimeout(() => {
@@ -72,10 +119,29 @@ export class CadastroPecasComponent {
     }, 5000);
   }
 
-  confirmarExclusao(id: number) {
-    this.pecas = this.pecas.filter(p => p.id !== id);
+  // Exclui do banco com Promise (DELETE)
+  async confirmarExclusao(id: number) {
+    try {
+      const resposta = await fetch('http://localhost/excluir_peca.php', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ id })
+      });
+
+      const resultado = await resposta.json();
+
+      if (resultado.success) {
+        this.mensagem = resultado.message;
+        this.pecas = this.pecas.filter(p => p.id !== id);
+      } else {
+        this.mensagem = 'Erro: ' + resultado.message;
+      }
+    } catch (erro) {
+      console.error('Erro ao excluir:', erro);
+      this.mensagem = 'Erro ao conectar com o servidor.';
+    }
+
     this.pecaASerExcluida = null;
-    this.mensagem = 'Peça excluída com sucesso!';
     setTimeout(() => this.mensagem = '', 3000);
   }
 
@@ -93,7 +159,6 @@ export class CadastroPecasComponent {
     setTimeout(() => this.mensagemEnvio = '', 3000);
   }
 
-  // ✅ Método logout para requisito 17
   logout() {
     localStorage.removeItem('usuarioLogado');
     this.router.navigate(['/login']);

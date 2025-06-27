@@ -1,9 +1,10 @@
-import { Injectable } from '@angular/core';
 import { CanActivateFn } from '@angular/router';
 
 export const authGuard: CanActivateFn = (route, state) => {
-  // Exemplo simples: verifica se o usuário está logado com base em localStorage
-  const isLoggedIn = localStorage.getItem('usuarioLogado') === 'true';
+  // Verifica se está no navegador antes de acessar localStorage
+  const isBrowser = typeof window !== 'undefined';
+
+  const isLoggedIn = isBrowser && localStorage.getItem('usuarioLogado') === 'true';
 
   return isLoggedIn;
 };
