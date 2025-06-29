@@ -1,6 +1,6 @@
 
 export default {
-  basePath: 'https://alanplima29.github.io/motorx',
+  basePath: '/motorx',
   supportedLocales: {
   "en-US": ""
 },

@@ -1,6 +1,10 @@
 {
   "routes": {
     "/motorx": {},
-    "/motorx/pecas": {}
+    "/motorx/login": {},
+    "/motorx/pecas": {},
+    "/motorx/pedido": {},
+    "/motorx/pedido/detalhes": {},
+    "/motorx/registro": {}
   }
 }
