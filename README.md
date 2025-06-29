@@ -12,7 +12,7 @@ O projeto foca na usabilidade e organização das peças em estoque com uma inte
 
 ---
 
-## 🎨 Prototipação no Figma  
+##  Prototipação no Figma  
 🔗 [Clique aqui para acessar o protótipo no Figma](https://www.figma.com/design/n2hKsedak1bl3Temw46f89/motorx?node-id=3-4&t=w1P1HOk4etAypqLk-0)
 
 ---
