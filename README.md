@@ -22,9 +22,9 @@ O projeto foca na usabilidade e organização das peças em estoque com uma inte
 
 ---
 
-## Dependências  
+## Algumas Tecnologias utilizadas  
 
-| Biblioteca             | 
+|      Descrição         | 
 |------------------------|
 | Angular                | 
 | Tailwind CSS           | 
@@ -34,7 +34,7 @@ O projeto foca na usabilidade e organização das peças em estoque com uma inte
 
 ---
 
-## Site em Produção  
+## Link do deploy no git pages
 🔗 [https://alanplima29.github.io/motorx](https://alanplima29.github.io/motorx)
 
 ---
