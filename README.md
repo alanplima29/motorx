@@ -17,11 +17,6 @@ O projeto foca na usabilidade e organização das peças em estoque com uma inte
 
 ---
 
-## 💠 Design System  
-🔗 [Acesse o Design System](https://www.figma.com/design/n2hKsedak1bl3Temw46f89/motorx?node-id=3-4&t=w1P1HOk4etAypqLk-0)
-
----
-
 ## 🎯 Framework CSS  
 - **Tailwind CSS** (com uso de classes utilitárias e responsividade mobile-first)
 
