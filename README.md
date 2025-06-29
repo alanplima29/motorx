@@ -17,12 +17,12 @@ O projeto foca na usabilidade e organização das peças em estoque com uma inte
 
 ---
 
-## 🎯 Framework CSS  
+## Framework CSS  
 - **Tailwind CSS** (com uso de classes utilitárias e responsividade mobile-first)
 
 ---
 
-## 📦 Dependências  
+## Dependências  
 
 | Biblioteca             | Descrição                                    |
 |------------------------|-----------------------------------------------|
@@ -34,23 +34,23 @@ O projeto foca na usabilidade e organização das peças em estoque com uma inte
 
 ---
 
-## 🚀 Site em Produção  
+## Site em Produção  
 🔗 [https://alanplima29.github.io/motorx](https://alanplima29.github.io/motorx)
 
 ---
 
-# ✅ Checklist | Indicadores de Desempenho (ID) dos Resultados de Aprendizagem (RA)
+# Checklist | Indicadores de Desempenho (ID) dos Resultados de Aprendizagem (RA)
 
 ---
 
-## 🧩 RA1 - Prototipar e projetar interfaces gráficas de usuário, considerando princípios de usabilidade e experiência do usuário
+## RA1 - Prototipar e projetar interfaces gráficas de usuário, considerando princípios de usabilidade e experiência do usuário
 
 - [x] **ID1**: Desenvolver protótipos de interfaces que demonstram compreensão das diretrizes de usabilidade  
 - [x] **ID2**: Projetar interfaces responsivas que se adaptam a diferentes tamanhos de tela
 
 ---
 
-## ⚙️ RA2 - Criar e reutilizar componentes em frameworks frontend, desenvolvendo interfaces modulares, responsivas e estilizadas
+## RA2 - Criar e reutilizar componentes em frameworks frontend, desenvolvendo interfaces modulares, responsivas e estilizadas
 
 - [x] **ID3**: Desenvolver componentes reutilizáveis e que se adaptem de maneira responsiva em vários tamanhos de tela  
 - [x] **ID4**: Incorporar componentes de frameworks CSS  
@@ -60,7 +60,7 @@ O projeto foca na usabilidade e organização das peças em estoque com uma inte
 
 ---
 
-## 🔗 RA3 - Sincronizar dados entre a interface gráfica e o modelo de dados, aplicando técnicas de binding para manter a consistência
+## RA3 - Sincronizar dados entre a interface gráfica e o modelo de dados, aplicando técnicas de binding para manter a consistência
 
 - [x] **ID8**: Aplicar técnicas de one-way data binding, como Interpolation e Property Binding, para exibir e atualizar dados na interface gráfica de maneira unidirecional  
 - [x] **ID9**: Aplicar técnicas de event binding para capturar eventos do usuário na interface e interagir com o modelo de dados  
@@ -69,14 +69,14 @@ O projeto foca na usabilidade e organização das peças em estoque com uma inte
 
 ---
 
-## 🧬 RA4 - Implementar comunicação eficaz entre componentes, utilizando padrões de comunicação e serviços para compartilhar lógica e dados
+## RA4 - Implementar comunicação eficaz entre componentes, utilizando padrões de comunicação e serviços para compartilhar lógica e dados
 
 - [x] **ID12**: Criar comunicação entre componentes não relacionados hierarquicamente por meio de serviços através do mecanismo de injeção de dependência  
 - [x] **ID13**: Utilizar as diretivas @Input ou @Output para comunicação em uma hierarquia de componentes  
 
 ---
 
-## 🧭 RA5 - Criar interfaces de navegação intuitivas e responsivas, implementando roteamento em aplicações de página única (SPA)
+## RA5 - Criar interfaces de navegação intuitivas e responsivas, implementando roteamento em aplicações de página única (SPA)
 
 - [x] **ID14**: Configurar rotas para diferentes partes da aplicação, permitindo a navegação entre páginas distintas  
 - [x] **ID15**: Passar dados entre componentes que representam diferentes telas usando parâmetros de rotas  
@@ -85,7 +85,7 @@ O projeto foca na usabilidade e organização das peças em estoque com uma inte
 
 ---
 
-## 🌐 RA6 - Realizar requisições assíncronas para serviços web, compreendendo os protocolos e formatos de troca de dados, tratando respostas e erros
+## RA6 - Realizar requisições assíncronas para serviços web, compreendendo os protocolos e formatos de troca de dados, tratando respostas e erros
 
 - [retirado] **ID18**: Fazer requisições assíncronas a uma API pública para no mínimo a operação GET  
 - [x] **ID19**: Fazer requisições assíncronas a uma API simulada/fake para as operações GET, POST, PUT, PATCH e DELETE  
@@ -97,7 +97,7 @@ O projeto foca na usabilidade e organização das peças em estoque com uma inte
 
 ---
 
-## 🔐 RA7 - Gerenciar o código-fonte de maneira eficiente, implementar boas práticas de controle de versão e colaborar em projetos de desenvolvimento
+## RA7 - Gerenciar o código-fonte de maneira eficiente, implementar boas práticas de controle de versão e colaborar em projetos de desenvolvimento
 
 - [x] **ID25**: Criar um repositório no GitHub utilizando a estrutura do Gitflow, estabelecendo as branches "main" e "develop"  
 - [x] **ID26**: Colaborar com outros membros do projeto, realizando fusões (merges) e resolução de conflitos  
@@ -105,4 +105,4 @@ O projeto foca na usabilidade e organização das peças em estoque com uma inte
 
 ---
 
-📌 _Este checklist serve como guia de validação dos critérios de aprendizagem ao longo do projeto._
+
