@@ -1,2 +1,0 @@
-import './polyfills.server.mjs';
-import{K as n,Ta as m,W as i,X as t,Y as d,da as p}from"./chunk-HV66LVTO.mjs";import"./chunk-S6KH3LOX.mjs";var s=class o{static \u0275fac=function(e){return new(e||o)};static \u0275cmp=n({type:o,selectors:[["app-pedido"]],decls:4,vars:0,consts:[[1,"p-6"],[1,"text-2xl","font-semibold","mb-4"]],template:function(e,r){e&1&&(i(0,"div",0)(1,"h2",1),p(2,"\xC1rea de Pedidos"),t(),d(3,"router-outlet"),t())},dependencies:[m],encapsulation:2})};export{s as PedidoComponent};
