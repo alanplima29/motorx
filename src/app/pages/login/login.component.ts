@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators, ReactiveFormsModule, FormGroup } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { Router, RouterModule } from '@angular/router'; 
+import { MensagemService } from '../../services/mensagem.service';
 
 @Component({
   selector: 'app-login',
@@ -10,14 +11,27 @@ import { Router, RouterModule } from '@angular/router';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit {
   form: FormGroup;
+  mensagemRecebida = '';
   isMenuOpen = false;
 
-  constructor(private fb: FormBuilder, private router: Router) { //req 17
+  constructor(
+    private fb: FormBuilder,
+    private router: Router,
+    private mensagemService: MensagemService
+  ) {
     this.form = this.fb.group({
       login: ['', [Validators.required, Validators.email]],
       senha: ['', [Validators.required, Validators.minLength(6)]],
+    });
+  }
+
+  ngOnInit(): void {
+
+    //REQUISITO 12
+    this.mensagemService.mensagem$.subscribe(msg => {
+      this.mensagemRecebida = msg;
     });
   }
 
@@ -27,10 +41,7 @@ export class LoginComponent {
       return;
     }
 
-    //req 17
     localStorage.setItem('usuarioLogado', 'true');
-
-    //req 17
     this.router.navigate(['/pecas']);
   }
 

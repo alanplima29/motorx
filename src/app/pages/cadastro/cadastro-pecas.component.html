@@ -1,128 +1,158 @@
-  <nav class="fixed top-0 left-0 w-full z-50 px-6 py-4 flex justify-between items-center bg-white shadow-md border-b border-gray-200">
-    <div class="flex items-center gap-2">
-      <img src="/images/login/perfil.png" alt="Logo" class="w-25 h-10" />
-      <span class="text-xl font-semibold" style="font-family: 'Open Sans', sans-serif;">MotorX</span>
-    </div>
+<nav class="fixed top-0 left-0 w-full z-50 px-6 py-4 flex justify-between items-center bg-white shadow-md border-b border-gray-200">
+  <div class="flex items-center gap-2">
+    <img src="images/login/perfil.png" alt="Logo" class="w-25 h-10" />
+    <span class="text-xl font-semibold" style="font-family: 'Open Sans', sans-serif;">MotorX</span>
+  </div>
 
-    <!-- Menu desktop -->
-    <ul class="hidden md:flex gap-6 text-gray-700 font-medium">
-      <li class="hover:text-green-600 transition">
-        <a routerLink="/"  class="cursor-pointer">Início</a>
-      </li>
-      <li class="hover:text-green-600 transition">
-        <a routerLink="/consultar" class="cursor-pointer">Consultar Pedidos</a>
-      </li>
-      <li class="hover:text-green-600 transition">
-        <a routerLink="/pecas"  class="cursor-pointer">Novo Pedido</a>
-      </li>
-      <li class="hover:text-green-600 transition">
-        <a routerLink="/pedido/detalhes" class="cursor-pointer">Rastrear Pedido</a>
-      </li>
-       <li><button (click)="logout()" class="text-sm text-red-600 hover:underline">Sair</button></li>
-    </ul>
-   
-
-    <!-- Botão hamburguer mobile -->
-    <button class="md:hidden" (click)="menuAberto = !menuAberto">
-      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-      </svg>
-    </button>
-
-   <!-- Menu mobile dropdown -->
-<div *ngIf="menuAberto" class="absolute top-16 right-6 bg-white shadow-lg rounded-lg p-4 w-52 z-50 md:hidden">
-  <ul class="flex flex-col gap-3 text-gray-700 font-medium">
-    <li><a routerLink="/" class="hover:text-green-600 cursor-pointer">Início</a></li>
-    <li><a routerLink="/consultar" class="hover:text-green-600 cursor-pointer">Consultar Pedidos</a></li>
-    <li><a routerLink="/pecas" class="hover:text-green-600 cursor-pointer">Novo Pedido</a></li>
-    <li><a routerLink="/pedido/detalhes" class="hover:text-green-600 cursor-pointer">Rastrear Pedido</a></li>
+  <!-- Menu desktop -->
+  <ul class="hidden md:flex gap-6 text-gray-700 font-medium">
+    <li class="hover:text-green-600 transition">
+      <a routerLink="/" class="cursor-pointer">Início</a>
+    </li>
+    <li class="hover:text-green-600 transition">
+      <a routerLink="/consultar" class="cursor-pointer">Consultar Pedidos</a>
+    </li>
+    <li class="hover:text-green-600 transition">
+      <a routerLink="/pecas" class="cursor-pointer">Novo Pedido</a>
+    </li>
+    <li class="hover:text-green-600 transition">
+      <a routerLink="/pedido/detalhes" class="cursor-pointer">Rastrear Pedido</a>
+    </li>
     <li><button (click)="logout()" class="text-sm text-red-600 hover:underline">Sair</button></li>
   </ul>
-</div>
 
-    
-  </nav>
+  <!-- Botão hamburguer mobile -->
+  <button class="md:hidden" (click)="menuAberto = !menuAberto">
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+    </svg>
+  </button>
 
+  <!-- Menu mobile dropdown -->
+  <div *ngIf="menuAberto" class="absolute top-16 right-6 bg-white shadow-lg rounded-lg p-4 w-52 z-50 md:hidden">
+    <ul class="flex flex-col gap-3 text-gray-700 font-medium">
+      <li><a routerLink="/" class="hover:text-green-600 cursor-pointer">Início</a></li>
+      <li><a routerLink="/consultar" class="hover:text-green-600 cursor-pointer">Consultar Pedidos</a></li>
+      <li><a routerLink="/pecas" class="hover:text-green-600 cursor-pointer">Novo Pedido</a></li>
+      <li><a routerLink="/pedido/detalhes" class="hover:text-green-600 cursor-pointer">Rastrear Pedido</a></li>
+      <li><button (click)="logout()" class="text-sm text-red-600 hover:underline">Sair</button></li>
+    </ul>
+  </div>
+</nav>
 
+<div class="min-h-screen bg-gray-50 pt-28 p-6">
+  <div class="max-w-4xl mx-auto bg-white p-6 rounded-2xl shadow-lg border border-gray-200">
+    <h1 class="text-2xl font-semibold text-center mb-6">Realizar Pedidos</h1>
 
-  <div class="min-h-screen bg-gray-50 pt-28 p-6">
-    <div class="max-w-4xl mx-auto bg-white p-6 rounded-2xl shadow-lg border border-gray-200">
-      <h1 class="text-2xl font-semibold text-center mb-6">Realizar Pedidos</h1>
-      <form [formGroup]="form" (ngSubmit)="salvar()" class="mb-6 space-y-4">
-        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
-          <div>
-            <input type="text" placeholder="Nome da peça" formControlName="nome"
-              class="border rounded px-3 py-2 w-full text-sm" />
-            <span *ngIf="form.get('nome')?.touched && form.get('nome')?.invalid" class="text-red-500 text-xs">Campo obrigatório</span>
-          </div>
-          <div>
-            <input type="text" placeholder="Categoria" formControlName="categoria"
-              class="border rounded px-3 py-2 w-full text-sm" />
-            <span *ngIf="form.get('categoria')?.touched && form.get('categoria')?.invalid" class="text-red-500 text-xs">Campo obrigatório</span>
-          </div>
-          <div>
-            <input type="number" placeholder="Quantidade" formControlName="quantidade"
-              class="border rounded px-3 py-2 w-full text-sm" />
-            <span *ngIf="form.get('quantidade')?.touched && form.get('quantidade')?.invalid" class="text-red-500 text-xs">Valor mínimo 1</span>
-          </div>
+    <!--REQUISITO 09-->
+    <form [formGroup]="form" (ngSubmit)="salvar()" class="mb-6 space-y-4">
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+        <div>
+          <input type="text" placeholder="Nome da peça" formControlName="nome"
+            class="border rounded px-3 py-2 w-full text-sm" />
+          <span *ngIf="form.get('nome')?.touched && form.get('nome')?.invalid" class="text-red-500 text-xs">Campo obrigatório</span>
         </div>
-        <div class="flex justify-end gap-4">
-          <button type="submit" title="Salvar">
-            <img src="/images/cadastro-pecas/mais.png" alt="Nova Peça" class="h-10" />
-          </button>
-          <button type="button" (click)="cancelarEdicao()">
-            <img src="/images/cadastro-pecas/cancelar.png" alt="Cancelar" class="h-10" />
-          </button>
+        <div>
+          <input type="text" placeholder="Categoria" formControlName="categoria"
+            class="border rounded px-3 py-2 w-full text-sm" />
+          <span *ngIf="form.get('categoria')?.touched && form.get('categoria')?.invalid" class="text-red-500 text-xs">Campo obrigatório</span>
         </div>
-      </form>
-      <p *ngIf="mensagem" class="text-green-600 text-sm text-center mt-4 transition-all duration-200">{{ mensagem }}</p>
-
-      <h2 class="text-xl font-semibold text-gray-800 text-center mb-2 mt-8">Pedido de Peças</h2>
-      <div class="overflow-x-auto">
-        <table class="min-w-full text-sm border-t mt-6">
-          <thead>
-            <tr class="bg-blue-50 text-left text-sm text-gray-700">
-              <th class="p-2 whitespace-nowrap">Nome</th>
-              <th class="p-2 whitespace-nowrap">Categoria</th>
-              <th class="p-2 whitespace-nowrap">Qtd</th>
-              <th class="p-2 text-center whitespace-nowrap">Ações</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let peca of pecas" class="border-b hover:bg-blue-50 transition-all duration-200">
-              <td class="p-2 break-words max-w-[120px] text-xs sm:text-sm">{{ peca.nome }}</td>
-              <td class="p-2 break-words max-w-[100px] text-xs sm:text-sm">{{ peca.categoria }}</td>
-              <td class="p-2 text-xs sm:text-sm">{{ peca.quantidade }}</td>
-              <td class="p-2">
-                <div class="flex justify-center items-center gap-2">
-                  <ng-container *ngIf="pecaASerExcluida === peca.id; else acoesNormais">
-                    <div class="flex flex-col sm:flex-row items-center justify-center gap-2">
-                      <span class="text-sm text-gray-600">Tem certeza que deseja excluir?</span>
-                      <div class="flex gap-2">
-                        <button class="bg-red-600 text-white text-xs px-3 py-1 rounded hover:bg-red-700 transition" (click)="confirmarExclusao(peca.id)">Sim</button>
-                        <button class="bg-gray-300 text-black text-xs px-3 py-1 rounded hover:bg-gray-400 transition" (click)="cancelarExclusao()">Não</button>
-                      </div>
-                    </div>
-                  </ng-container>
-                  <ng-template #acoesNormais>
-                    <button title="Editar" (click)="editar(peca)"><img src="/images/cadastro-pecas/editar.png" class="w-4 h-4 sm:w-5 sm:h-5" /></button>
-                    <button title="Excluir" (click)="pecaASerExcluida = peca.id"><img src="/images/cadastro-pecas/lixo.png" class="w-4 h-4 sm:w-5 sm:h-5" /></button>
-                  </ng-template>
-                </div>
-              </td>
-            </tr>
-          </tbody>
-        </table>
+        <div>
+          <input type="number" placeholder="Quantidade" formControlName="quantidade"
+            class="border rounded px-3 py-2 w-full text-sm" />
+          <span *ngIf="form.get('quantidade')?.touched && form.get('quantidade')?.invalid" class="text-red-500 text-xs">Valor mínimo 1</span>
+        </div>
       </div>
-
-      <p *ngIf="pecas.length === 0" class="text-center text-gray-500 mt-4">Nenhuma peça cadastrada.</p>
-      <div class="mt-6 flex justify-center md:justify-end">
-        <button (click)="enviarParaSeparacao()" [disabled]="pecas.length === 0"
-          class="flex items-center gap-2 bg-green-600 text-white px-6 py-2 rounded-full hover:bg-green-700 transition disabled:opacity-50 disabled:cursor-not-allowed">
-          <span class="text-sm font-semibold">Enviar para Separacão</span>
-          <img src="/images/cadastro-pecas/cartinha.png" alt="Enviar" class="w-6 h-6" />
+      <div class="flex justify-end gap-4">
+        <button type="submit" title="Salvar">
+          <img src="images/cadastro-pecas/mais.png" alt="Nova Peça" class="h-10" />
+        </button>
+        <button type="button" (click)="cancelarEdicao()">
+          <img src="images/cadastro-pecas/cancelar.png" alt="Cancelar" class="h-10" />
         </button>
       </div>
-      <p *ngIf="mensagemEnvio" class="text-green-600 text-sm text-center mt-2 transition-all duration-200">{{ mensagemEnvio }}</p>
+    </form>
+    <!--requisito 12-->
+   <app-mensagem-info *ngIf="mensagem" [texto]="mensagem" />
+
+    <!--requisito 11-->
+    <p #mensagemRef>{{ mensagemRef.textContent }}</p>
+
+    <h2 class="text-xl font-semibold text-gray-800 text-center mb-2 mt-8">Pedido de Peças</h2>
+
+    <!-- Requisito 10 -->
+    <input
+  #campoBusca
+  [(ngModel)]="filtro"
+  type="text"
+  placeholder="Buscar por nome da peça..."
+  class="mb-4 px-4 py-2 border rounded w-full sm:w-64"
+/>
+<!--requisito 11-->
+<p class="text-sm text-gray-500">Você está buscando: "{{ campoBusca.value }}"</p>
+
+
+    <div class="overflow-x-auto">
+      <table class="min-w-full text-sm border-t mt-6">
+        <thead>
+          <tr class="bg-blue-50 text-left text-sm text-gray-700">
+            <th class="p-2 whitespace-nowrap">Nome</th>
+            <th class="p-2 whitespace-nowrap">Categoria</th>
+            <th class="p-2 whitespace-nowrap">Qtd</th>
+            <th class="p-2 text-center whitespace-nowrap">Ações</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Requisito 10 -->
+          <tr *ngFor="let peca of pecasFiltradas()" class="border-b hover:bg-blue-50 transition-all duration-200">
+
+            <!-- Requisito 07 -->
+            <td class="p-2 break-words max-w-[120px] text-xs sm:text-sm">{{ peca.nome | titlecase }}</td>
+            <td class="p-2 break-words max-w-[100px] text-xs sm:text-sm">{{ peca.categoria }}</td>
+            <td class="p-2 text-xs sm:text-sm">{{ peca.quantidade }}</td>
+            <td class="p-2">
+              <div class="flex justify-center items-center gap-2">
+                <ng-container *ngIf="pecaASerExcluida === peca.id; else acoesNormais">
+                  <div class="flex flex-col sm:flex-row items-center justify-center gap-2">
+                    <span class="text-sm text-gray-600">Tem certeza que deseja excluir?</span>
+                    <div class="flex gap-2">
+                      <button class="bg-red-600 text-white text-xs px-3 py-1 rounded hover:bg-red-700 transition" (click)="confirmarExclusao(peca.id)">Sim</button>
+                      <button class="bg-gray-300 text-black text-xs px-3 py-1 rounded hover:bg-gray-400 transition" (click)="cancelarExclusao()">Não</button>
+                    </div>
+                  </div>
+                </ng-container>
+                <ng-template #acoesNormais>
+  <button title="Editar" (click)="editar(peca)">
+    <img src="images/cadastro-pecas/editar.png" class="w-4 h-4 sm:w-5 sm:h-5" />
+  </button>
+  <button title="Excluir" (click)="pecaASerExcluida = peca.id">
+    <img src="/images/cadastro-pecas/lixo.png" class="w-4 h-4 sm:w-5 sm:h-5" />
+  </button>
+  <a [routerLink]="['/pedido/detalhes', peca.id]" title="Rastrear" class="text-blue-600 text-xs underline">
+    Rastrear
+  </a>
+</ng-template>
+
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </div>
+
+    <p *ngIf="pecasFiltradas().length === 0" class="text-center text-gray-500 mt-4">Nenhuma peça cadastrada.</p>
+
+    <div class="mt-6 flex justify-center md:justify-end">
+      
+      <!--requisito 08 Property Binding-->
+      <button (click)="enviarParaSeparacao()" [disabled]="pecas.length === 0"
+        class="flex items-center gap-2 bg-green-600 text-white px-6 py-2 rounded-full hover:bg-green-700 transition disabled:opacity-50 disabled:cursor-not-allowed">
+        <span class="text-sm font-semibold">Enviar para Separacão</span>
+        <img src="images/cadastro-pecas/cartinha.png" alt="Enviar" class="w-6 h-6" />
+      </button>
+    </div>
+
+    <!--requisito 08-->
+    <p *ngIf="mensagemEnvio" class="text-green-600 text-sm text-center mt-2 transition-all duration-200">{{ mensagemEnvio }}</p>
   </div>
+</div>

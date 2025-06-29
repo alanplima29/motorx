@@ -1,8 +1,8 @@
-<!-- NAVBAR FIXA NO TOPO -->
+
 <nav class="fixed top-0 left-0 w-full z-50 px-6 py-4 flex justify-between items-center bg-white shadow-md">
   <!-- Logo e Nome -->
   <div class="flex items-center gap-2">
-    <img src="/images/login/perfil.png" alt="Logo" class="w-25 h-10" />
+    <img src="images/login/perfil.png" alt="Logo" class="w-25 h-10" />
     <span class="text-xl font-semibold" style="font-family: 'Open Sans', sans-serif;">MotorX</span>
   </div>
 
@@ -21,7 +21,7 @@
 
 
   </ul>
-  <!-- app.component.html -->
+  
 
 
   <!-- Botão Menu Mobile -->
@@ -48,7 +48,7 @@
   </div>
 </nav>
 
-<!-- CONTEÚDO PRINCIPAL COM ESPAÇO PARA NAVBAR -->
+
 <div class="min-h-screen bg-gray-100 px-4 md:px-6 pt-28 pb-16">
 
 
@@ -58,6 +58,8 @@
     <div class="flex flex-col md:flex-row md:items-start md:gap-8">
       <!-- Linha do tempo -->
       <div class="relative md:w-1/2 pl-4 md:pl-0">
+
+        <!-- Requisito 06 -->
         <div *ngFor="let etapa of etapas; let i = index" class="relative mb-8">
           <div class="flex items-start md:items-center gap-4">
             <div class="flex flex-col items-center">
@@ -71,14 +73,16 @@
               <div *ngIf="i < etapas.length - 1" class="w-1 bg-gray-300 h-16 mt-1"></div>
             </div>
             <div>
-              <p class="text-sm text-gray-500">{{ etapa.data }}<br /><strong>{{ etapa.hora }}</strong></p>
+
+              <!-- requisito 07-->
+              <p class="text-sm text-gray-500">{{ etapa.data | date:'dd/MM/yyyy' }}<br /><strong>{{ etapa.hora }}</strong></p>
               <p class="font-semibold">{{ etapa.titulo }}</p>
               <p class="text-sm text-gray-600">{{ etapa.descricao }}</p>
             </div>
           </div>
         </div>
       </div>
-      <!-- Você pode adicionar uma imagem ou ilustração aqui -->
+      
     </div>
   </div>
 </div>

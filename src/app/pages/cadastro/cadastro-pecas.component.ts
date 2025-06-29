@@ -4,12 +4,17 @@ import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angula
 import { RouterModule, Router } from '@angular/router';
 import { PecaService } from '../../services/peca.service';
 import { take } from 'rxjs';
+import { FormsModule } from '@angular/forms';
+import { MensagemService } from '../../services/mensagem.service';
+import { MensagemInfoComponent } from '../../components/mensagem-info/mensagem-info.component';
+
+
 
 
 @Component({
   selector: 'app-cadastro-pecas',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, RouterModule],
+  imports: [CommonModule, ReactiveFormsModule, RouterModule,FormsModule, MensagemInfoComponent],
   templateUrl: './cadastro-pecas.component.html',
   styleUrls: ['./cadastro-pecas.component.css']
 })
@@ -23,8 +28,9 @@ export class CadastroPecasComponent implements OnInit {
   pecas: any[] = [];
 
   form: FormGroup;
+  mensagemImportante = 'Atenção: revise os dados antes de enviar!';
 
-  constructor(private fb: FormBuilder, private router: Router, private pecaService: PecaService) {
+  constructor(private fb: FormBuilder, private router: Router, private pecaService: PecaService, private mensagemService: MensagemService) {
     this.form = this.fb.group({
       nome: ['', Validators.required],
       categoria: ['', Validators.required],
@@ -37,6 +43,7 @@ export class CadastroPecasComponent implements OnInit {
   }
 
   // Método que carrega os dados do banco via Promise (GET)
+  //requisito 08
   carregarPecas() {
   this.pecaService.listar().pipe(take(1)).subscribe({
     next: (data) => this.pecas = data,
@@ -45,7 +52,7 @@ export class CadastroPecasComponent implements OnInit {
 }
 
 
-  // Método assíncrono que trata cadastro e edição (POST)
+  // REQUISITO 09
   async salvar() {
     if (this.form.invalid) {
       this.form.markAllAsTouched();
@@ -68,6 +75,8 @@ export class CadastroPecasComponent implements OnInit {
 
         if (resultado.success) {
           this.mensagem = resultado.message;
+          //REQUISITO 12
+          this.mensagemService.enviar('Peça salva com sucesso!');
           this.carregarPecas();
           this.pecaEmEdicao = null;
           this.form.reset({ quantidade: 0 });
@@ -154,7 +163,7 @@ export class CadastroPecasComponent implements OnInit {
     this.pecaEmEdicao = null;
     this.form.reset({ quantidade: 0 });
   }
-
+  //requisito 08
   enviarParaSeparacao() {
     this.mensagemEnvio = 'Pedido enviado para separação!';
     setTimeout(() => this.mensagemEnvio = '', 3000);
@@ -164,4 +173,13 @@ export class CadastroPecasComponent implements OnInit {
     localStorage.removeItem('usuarioLogado');
     this.router.navigate(['/login']);
   }
+
+  filtro = ''; //requisito 10
+
+pecasFiltradas() {
+  return this.pecas.filter(p =>
+    p.nome.toLowerCase().includes(this.filtro.toLowerCase())
+  );
+}
+
 }

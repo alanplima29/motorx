@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule, Router } from '@angular/router';
+import { RouterModule, Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   standalone: true,
@@ -8,15 +8,22 @@ import { RouterModule, Router } from '@angular/router';
   imports: [CommonModule, RouterModule],
   templateUrl: './detalhes-pedido.component.html',
 })
-export class DetalhesPedidoComponent {
+export class DetalhesPedidoComponent implements OnInit {
   isMenuOpen = false;
+  pedidoId: string | null = null; // ID capturado da URL
 
-  constructor(private router: Router) {} // ← CORREÇÃO AQUI
+  constructor(private router: Router, private route: ActivatedRoute) {}
+
+  ngOnInit(): void {
+    this.pedidoId = this.route.snapshot.paramMap.get('id');
+    console.log('ID do pedido recebido:', this.pedidoId);
+  }
 
   toggleMenu() {
     this.isMenuOpen = !this.isMenuOpen;
   }
 
+  // Requisito 06 
   etapas = [
     {
       data: '01/08/2025',

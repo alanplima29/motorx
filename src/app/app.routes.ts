@@ -18,7 +18,7 @@ export const routes: Routes = [
   canActivate: [authGuard], //  protege a rota pai
   children: [
     {
-      path: 'detalhes',
+      path: 'detalhes/:id',
       loadComponent: () =>
         import('./pages/detalhes-pedido/detalhes-pedido.component').then(m => m.DetalhesPedidoComponent),
       canActivate: [authGuard] //  protege a rota filha também
