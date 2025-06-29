@@ -1,6 +1,6 @@
-# 🚗 MotorX - Gerenciador de Pedidos de Peças Automotivas
+# MotorX - Gerenciador de Pedidos de Peças Automotivas
 
-### 📌 Autor  
+###  Autor  
 **Alan Pereira Lima**
 
 ---
@@ -24,13 +24,13 @@ O projeto foca na usabilidade e organização das peças em estoque com uma inte
 
 ## Dependências  
 
-| Biblioteca             | Descrição                                    |
-|------------------------|-----------------------------------------------|
-| Angular                | Framework principal para construção da SPA   |
-| Tailwind CSS           | Estilização moderna e responsiva             |
-| TypeScript             | Superset de JavaScript com tipagem           |
-| Forms Reactive         | Controle e validação de formulários Angular  |
-| GitHub Pages (deploy)  | Publicação da aplicação                      |
+| Biblioteca             | 
+|------------------------|
+| Angular                | 
+| Tailwind CSS           | 
+| TypeScript             |  
+| Forms Reactive         | 
+| GitHub Pages (deploy)  |
 
 ---
 
